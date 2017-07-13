@@ -1,0 +1,10 @@
+{
+    "baseUrl": "http://localhost:8090",
+    "serverPort": "8090",
+    "db":{
+        "name": "weather-widget",
+        "host": "localhost",
+        "port": 27017
+    },
+    "secret": "put chars here"
+}
