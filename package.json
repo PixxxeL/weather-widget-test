@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Task for JS and Node.JS skills verification",
   "scripts": {
-    "server": "babel-node server/app.js"
+    "server": "babel-node server/app.js",
+    "get-weather": "babel-node server/utils/get-weather.js"
   },
   "repository": {
     "type": "git",
@@ -22,7 +23,8 @@
     "mongoose": "^4.11.1",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
-    "pug": "^2.0.0-rc.2"
+    "pug": "^2.0.0-rc.2",
+    "request": "^2.81.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1"
