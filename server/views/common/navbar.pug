@@ -1,0 +1,15 @@
+.navbar.navbar-default
+    .container-fluid
+        .navbar-header.pull-right
+            p.navbar-text
+                if user
+                    | Вы зашли как: 
+                    strong= user.username
+                    a.btn.btn-default.auth(href="/logout")
+                        span.glyphicon.glyphicon-log-out
+                        |  Выход
+                else
+                    span Вы не авторизовались
+                    a.btn.btn-default.auth(href="/")
+                        span.glyphicon.glyphicon-log-in
+                        |  Войти

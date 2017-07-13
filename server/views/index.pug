@@ -2,23 +2,24 @@ extends common/base.pug
 
 
 block head_seo
-    title Главная
+    title Виджеты
 
 block content
-    h1 Главная
-    if username
-        p
-            span= username
-            span [ #[a(href="/logout") Выход] ]
-    if error
-        p= error
-    if !username
-        form(action="/login" method="post")
-            div
-                label Username:
-                input(type="text" name="username")
-            div
-                label Password:
-                input(type="password" name="password")
-            div
-                input(type="submit" value="Log In")
+    .container
+        .form-signin
+            if !user
+                h1.text-center Главная
+                if error
+                    p.alert.alert-danger= error
+                form.form-horizontal(action="/login" method="post")
+                    .form-group
+                        label.col-sm-2.control-label(for="auth-username") Username:
+                        .col-sm-10
+                            input.form-control(id="auth-username" type="text" name="username" required autofocus)
+                    .form-group
+                        label.col-sm-2.control-label(for="auth-password") Password:
+                        .col-sm-10
+                            input.form-control(id="auth-password" type="password" name="password" required)
+                    .form-group
+                        .col-sm-offset-2.col-sm-10
+                            button.btn.btn-lg.btn-primary.btn-block(type="submit") Войти

@@ -4,7 +4,7 @@ import { app, passport, errStr } from  './init';
 app.get('/', (req, res) => {
     let error = req.flash('error');
     res.render('index', {
-        username : req.user ? req.user.username : null,
+        user : req.user,
         error : error.length ? error.join(' ') : null
     });
 });
@@ -27,9 +27,10 @@ app.get('/logout', function(req, res){
 
 app.get('/widgets', (req, res) => {
     if (!req.user) {
-        res.redirect('/');
+        return res.redirect('/');
     }
     res.render('widgets.pug', {
-        username : req.user.username
+        user : req.user,
+        widgets : []
     });
 });

@@ -1,0 +1,17 @@
+{
+  "name": "weather-widget-test",
+  "description": "Task for JS and Node.JS skills verification",
+  "authors": [
+    "ivan.n.sergeev@gmail.com"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/PixxxeL/weather-widget-test",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

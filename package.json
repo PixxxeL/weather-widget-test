@@ -2,7 +2,6 @@
   "name": "weather-widget-test",
   "version": "1.0.0",
   "description": "Task for JS and Node.JS skills verification",
-  "main": "index.js",
   "scripts": {
     "server": "babel-node server/app.js"
   },

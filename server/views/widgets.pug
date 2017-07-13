@@ -5,8 +5,6 @@ block head_seo
     title Виджеты
 
 block content
-    h1 Виджеты
-    if username
-        p
-            span= username
-            span [ #[a(href="/logout") Выход] ]
+    .container
+        h1 Виджеты
+        .table.table-striped.table-hover.table-condensed
