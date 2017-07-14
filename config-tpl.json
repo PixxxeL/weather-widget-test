@@ -7,5 +7,6 @@
         "port": 27017
     },
     "secret": "put chars here",
-    "openWeatherId": ""
+    "openWeatherId": "",
+    "getWeatherTimeout": 10000
 }

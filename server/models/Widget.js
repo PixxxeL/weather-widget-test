@@ -2,11 +2,23 @@ import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
 
+const CITY_MAPPING = {
+    'Москва' : 'Moskow',
+    'Санкт-Петербург' : 'Saint Petersburg',
+    'Нижний Новгород' : 'Nizhniy Novgorod'
+};
+
+const CITIES_CHOISES = Object.keys(CITY_MAPPING);
+
+const DAYS_CHOISES = [1, 3, 7];
+
 const WidgetSchema = new Schema({
-    city  : { type: String, required: true },
-    days  : { type: Number, enum: [1, 3, 7] },
+    city  : { type: String, enum: CITIES_CHOISES, required: true },
+    days  : { type: Number, enum: DAYS_CHOISES, required: true },
     vertical : { type: Boolean, default: false },
     user : { type: Schema.Types.ObjectId, ref: 'User' }
 });
 
-export default mongoose.model('Widget', WidgetSchema);
+const Widget = mongoose.model('Widget', WidgetSchema);
+
+export { Widget as default, CITY_MAPPING, CITIES_CHOISES, DAYS_CHOISES };
