@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "Task for JS and Node.JS skills verification",
   "scripts": {
-    "server": "babel-node server/app.js",
-    "get-weather": "babel-node server/utils/get-weather.js"
+    "server": "nodemon --exec \"babel-node --presets node6 server/app.js\"",
+    "get-weather": "babel-node --presets node6 server/utils/get-weather.js"
   },
   "repository": {
     "type": "git",
@@ -14,8 +14,11 @@
   "license": "ISC",
   "homepage": "https://github.com/PixxxeL/weather-widget-test#readme",
   "dependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-node6": "^11.0.0",
     "body-parser": "^1.17.2",
     "connect-flash": "^0.1.1",
+    "connect-mongo": "^1.3.2",
     "cookie-parser": "^1.4.3",
     "express": "^4.15.3",
     "express-session": "^1.15.3",
@@ -28,6 +31,6 @@
     "request": "^2.81.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.24.1"
+    "nodemon": "^1.11.0"
   }
 }

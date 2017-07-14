@@ -8,7 +8,7 @@ const CITY_MAPPING = {
     'Нижний Новгород' : 'Nizhniy Novgorod'
 };
 
-const CITIES_CHOISES = Object.keys(CITY_MAPPING);
+const CITIES_CHOISES = Object.values(CITY_MAPPING);
 
 const DAYS_CHOISES = [1, 3, 7];
 
@@ -21,4 +21,4 @@ const WidgetSchema = new Schema({
 
 const Widget = mongoose.model('Widget', WidgetSchema);
 
-export { Widget as default, CITY_MAPPING, CITIES_CHOISES, DAYS_CHOISES };
+export { Widget, CITY_MAPPING, CITIES_CHOISES, DAYS_CHOISES };

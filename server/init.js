@@ -3,6 +3,8 @@ import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import flash from 'connect-flash';
+import connectMongo from 'connect-mongo';
+import mongoose from "mongoose";
 import passport from 'passport';
 import path from 'path';
 import { Strategy as LocalStrategy } from 'passport-local';
@@ -15,11 +17,18 @@ import User from './models/User';
 
 const app = express();
 
+db.connect();
+
+const MongoStore = connectMongo(session);
+
 app.use(express.static('public'));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({
     secret: config.secret,
+    store: new MongoStore({
+        mongooseConnection: mongoose.connection
+    }),
     resave: true,
     saveUninitialized: true
 }));
@@ -29,8 +38,6 @@ app.use(flash());
 
 app.set('view engine', 'pug');
 app.set('views', path.resolve('server/views'));
-
-db.connect();
 
 const errStr = 'Не правильное имя пользователя или пароль';
 

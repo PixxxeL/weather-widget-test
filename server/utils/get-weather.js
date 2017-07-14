@@ -13,7 +13,7 @@ for (let [ru, en] of Object.entries(CITY_MAPPING)) {
         console.log(`Recieve ${ru}...`);
         if (!error && response.statusCode == 200) {
             redis.set(en, body);
-            console.log(`  save...`);
+            console.log(`  and save...`);
         }
     });
 }

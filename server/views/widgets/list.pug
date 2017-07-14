@@ -1,0 +1,22 @@
+extends ../common/base.pug
+
+
+block head_seo
+    title Виджеты. Список
+
+block content
+    .container
+        h1 
+            | Виджеты
+            .pull-right
+                a.btn.btn-default(href="/widgets/add") Добавить виджет
+        table.table.table-striped.table-hover.table-condensed
+            tbody
+                each widget in widgets
+                    tr
+                        td= widget.city
+                        td= widget.days
+                        td= widget.vertical
+                        td Изменить
+                        td Удалить
+                        td Код
