@@ -74,6 +74,7 @@ app.post('/widgets/add', (req, res) => {
         if (!err) {
             return res.redirect('/widgets');
         } else {
+            // flash.set need here
             res.render('widgets/form.pug', getWidgetFromData(req.user, data, 'Добавить'));
         }
     });
@@ -88,6 +89,7 @@ app.get('/widgets/:id/edit', (req, res) => {
         if (!err) {
             res.render('widgets/form.pug', getWidgetFromData(req.user, data, 'Редактировать'));
         } else {
+            // flash.set need here
             return res.redirect('/widgets');
         }
     });
@@ -102,6 +104,7 @@ app.post('/widgets/:id/edit', (req, res) => {
         if (!err) {
             return res.redirect(`/widgets`);
         } else {
+            // flash.set need here
             return res.redirect(`/widgets/${data.id}/edit`);
         }
     });
@@ -113,6 +116,7 @@ app.get('/widgets/:id/del', (req, res) => {
     }
     console.log('Request widget del page...');
     Widget.findById(req.params.id).remove((err, data) => {
+        // chech error and flash.set need here
         res.redirect('/widgets');
     });
 });

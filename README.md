@@ -1,6 +1,6 @@
 # Weather Widget Test
 
-Task for JS and Node.JS skills verification
+Тестовое задание для проверки навыков JS и Node.JS.
 
 ## Как развернуть
 
@@ -8,14 +8,15 @@ Task for JS and Node.JS skills verification
 c [NPM](https://www.npmjs.com/) и базы [Redis](https://redis.io/download),
 [MongoDB](https://www.mongodb.com/download-center).
 
-После их установки и запуска надо скопировать файл `config-tpl.json` в
+После их установки и запуска надо склонировать текущий репозиторий,
+перейти в его корневую папку, скопировать файл `config-tpl.json` в
 `config.json` и заполнить его соответствующими значениями.
 
 Обязательно придется создать аккаунт
 на [OpenWeather](https://openweathermap.org/),
 получить там ключ и прописать его в `config.json`.
 
-Далее выполняем:
+Далее выполняем в консоли:
 
 ```bash
 npm i
@@ -24,8 +25,9 @@ npm run get-weather
 npm run server
 ```
 
-В приложение можно будет зайти пользователями `demo1` или `demo2`
-с паролем `demo`.
+В приложение можно будет зайти по адресу `http://localhost:8090`
+(или, если изменена переменная `serverPort`, то по соответствующему)
+пользователями `demo1` или `demo2` с паролем `demo`.
 
 ## Задача
 
