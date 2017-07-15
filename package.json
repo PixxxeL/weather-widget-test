@@ -4,6 +4,7 @@
   "description": "Task for JS and Node.JS skills verification",
   "scripts": {
     "server": "nodemon --exec \"babel-node --presets node6 server/app.js\"",
+    "set-demo-users": "babel-node --presets node6 server/utils/set-demo-users.js",
     "get-weather": "babel-node --presets node6 server/utils/get-weather.js"
   },
   "repository": {

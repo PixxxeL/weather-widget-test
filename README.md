@@ -19,11 +19,13 @@ c [NPM](https://www.npmjs.com/) и базы [Redis](https://redis.io/download),
 
 ```bash
 npm i
+npm run set-demo-users
 npm run get-weather
 npm run server
 ```
 
-В MongoDB придется создать хотя бы одного пользователя.
+В приложение можно будет зайти пользователями `demo1` или `demo2`
+с паролем `demo`.
 
 ## Задача
 
