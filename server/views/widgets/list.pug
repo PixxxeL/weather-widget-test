@@ -9,14 +9,30 @@ block content
         h1 
             | Виджеты
             .pull-right
-                a.btn.btn-default(href="/widgets/add") Добавить виджет
+                a.btn.btn-default(href="/widgets/add")
+                    span.glyphicon.glyphicon-plus.with-text
+                    | Добавить виджет
         table.table.table-striped.table-hover.table-condensed
+            thead
+                tr
+                    th.text-center город
+                    th.text-center на сколько дней прогноз
+                    th.text-center вертикальный?
+                    th.text-center управление
             tbody
                 each widget in widgets
                     tr
-                        td= widget.city
-                        td= widget.days
-                        td= widget.vertical
-                        td Изменить
-                        td Удалить
-                        td Код
+                        td.lead= Object.keys(cities)[Object.values(cities).indexOf(widget.city)]
+                        td.text-center= widget.days
+                        td.text-center
+                            if widget.vertical
+                                .glyphicon.glyphicon-ok(title="Вертикальный")
+                            else
+                                .glyphicon.glyphicon-minus(title="Горизонтальный")
+                        td.text-center
+                            a.btn.btn-default(href='/widgets/' + widget.id + '/edit' title="Изменить")
+                                span.glyphicon.glyphicon-cog
+                            a.btn.btn-default.delete-item(href='/widgets/' + widget.id + '/del' title="Удалить")
+                                span.glyphicon.glyphicon-remove
+                            a.btn.btn-default.get-widget-code(href=baseUrl + '/widgets/' + widget.id + '.js' title="Получить код")
+                                span.glyphicon.glyphicon-link

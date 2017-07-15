@@ -9,3 +9,6 @@
 .navbar .auth {
     margin-left: 30px;
 }
+.btn span.glyphicon.with-text {
+    margin-right: 5px;
+}

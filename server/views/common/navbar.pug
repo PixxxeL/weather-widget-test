@@ -6,10 +6,10 @@
                     | Вы зашли как: 
                     strong= user.username
                     a.btn.btn-default.auth(href="/logout")
-                        span.glyphicon.glyphicon-log-out
-                        |  Выход
+                        span.glyphicon.glyphicon-log-out.with-text
+                        | Выход
                 else
                     span Вы не авторизовались
                     a.btn.btn-default.auth(href="/")
-                        span.glyphicon.glyphicon-log-in
-                        |  Войти
+                        span.glyphicon.glyphicon-log-in.with-text
+                        | Войти

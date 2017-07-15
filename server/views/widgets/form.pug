@@ -9,26 +9,33 @@ block content
         h1 
             | Добавление виджета
             .pull-right
-                a.btn.btn-default(href="/widgets") Список
+                a.btn.btn-default(href="/widgets")
+                    span.glyphicon.glyphicon-list.with-text
+                    | Список
         .row(style="margin-top: 30px;")
             .col-md-12
-                form.form-horizontal(action="/widgets/add" method="post")
+                form.form-horizontal(action=(mode === 'Добавить' ? '/widgets/add' : '/widgets/' + widget.id + '/edit') method="post")
+                    if widget && widget.id
+                        input(type="hidden" name="id" value=widget.id)
                     .form-group
                         label.col-sm-2.control-label(for="widget-city") Город:
                         .col-sm-10
                             select.form-control(id="widget-city" name="city" required)
                                 each en, ru in cities
-                                    option(value=en)= ru
+                                    -var sel = widget && widget.city === en
+                                    option(value=en selected=sel)= ru
                     .form-group
                         label.col-sm-2.control-label(for="widget-days") На сколько дней:
                         .col-sm-10
                             select.form-control(id="widget-days" name="days" required)
                                 each cnt in days
-                                    option(value=cnt)= cnt
+                                    -var sel = widget && widget.days === cnt
+                                    option(value=cnt selected=sel)= cnt
                     .form-group
                         label.col-sm-2.control-label(for="widget-vertical") Вертикальный:
                         .col-sm-10
-                            input(type="checkbox" id="widget-vertical" name="vertical" value="1")
+                            -var chk = widget && widget.vertical
+                            input(type="checkbox" id="widget-vertical" name="vertical" value="1" checked=chk)
                     .form-group
                         .col-sm-offset-2.col-sm-10
                             button.btn.btn-lg.btn-primary(type="submit")= mode
