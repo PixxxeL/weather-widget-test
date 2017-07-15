@@ -1,9 +1,16 @@
+import path from 'path';
+import pug from 'pug';
+import Redis from 'ioredis';
+
 import { app, passport, errStr } from  './init';
 import { Widget, CITY_MAPPING, DAYS_CHOISES } from './models/Widget';
 import config from '../config.json';
 
 
 app.get('/', (req, res) => {
+    if (req.user) {
+        return res.redirect('/widgets');
+    }
     console.log('Request home page...');
     let error = req.flash('error');
     res.render('index', {
@@ -111,5 +118,49 @@ app.get('/widgets/:id/del', (req, res) => {
 });
 
 app.get('/widgets/:id.js', (req, res) => {
-    res.send('File content will be here...'); // TODO
+    const errorResponse = (msg) => {
+        return `console.error('${msg}');`;
+    };
+    Widget.findById(req.params.id, function (err, wData) {
+        if (!err) {
+            const redis = new Redis();
+            redis.get(wData.city).then(function (rData) {
+                if (rData) {
+                    const data = JSON.parse(rData);
+                    const filepath = './server/views/widgets/widget.tpl.pug';
+                    const cityName = Object.keys(CITY_MAPPING)[
+                        Object.values(CITY_MAPPING).indexOf(wData.city)
+                    ];
+                    let temp = data && data.main ? data.main.temp : '-';
+                    try {
+                        temp = parseInt(temp, 10);
+                        temp = temp > 0 ? `+${temp}` : temp;
+                    } catch (err) {}
+                    let labelStyle, cityStyle, tempStyle;
+                    if (wData.vertical) {
+                        labelStyle = '';
+                        cityStyle = 'font-weight:bold;font-size:14px;';
+                        tempStyle = 'font-size:36px;';
+                    } else {
+                        labelStyle = 'margin-right:5px;display:inline-block;';
+                        cityStyle = 'margin-right:5px;font-weight:bold;display:inline-block;';
+                        tempStyle = 'font-weight:bold;display:inline-block;';
+                    }
+                    const html = pug.compileFile(path.resolve(filepath))({
+                        city : cityName,
+                        temp : temp,
+                        labelStyle : labelStyle,
+                        cityStyle : cityStyle,
+                        tempStyle : tempStyle
+                    });
+                    res.send(`document.write('${html}');`);
+                } else {
+                    res.send(errorResponse('No weather data in database!'));
+                }
+            });
+        } else {
+            res.send(errorResponse('Wrong weather service script!'));
+        }
+    });
+    
 });

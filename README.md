@@ -2,6 +2,29 @@
 
 Task for JS and Node.JS skills verification
 
+## Как развернуть
+
+Для работы сервиса необходима платформа [Node.js](https://nodejs.org/)
+c [NPM](https://www.npmjs.com/) и базы [Redis](https://redis.io/download),
+[MongoDB](https://www.mongodb.com/download-center).
+
+После их установки и запуска надо скопировать файл `config-tpl.json` в
+`config.json` и заполнить его соответствующими значениями.
+
+Обязательно придется создать аккаунт
+на [OpenWeather](https://openweathermap.org/),
+получить там ключ и прописать его в `config.json`.
+
+Далее выполняем:
+
+```bash
+npm i
+npm run get-weather
+npm run server
+```
+
+В MongoDB придется создать хотя бы одного пользователя.
+
 ## Задача
 
 Необходимо написать виджет, при размещении кода которого на любой странице любого 
