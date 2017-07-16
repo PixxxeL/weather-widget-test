@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "Task for JS and Node.JS skills verification",
   "scripts": {
-    "server": "nodemon --exec \"babel-node --presets node6 server/app.js\"",
-    "set-demo-users": "babel-node --presets node6 server/utils/set-demo-users.js",
-    "get-weather": "babel-node --presets node6 server/utils/get-weather.js"
+    "server": "nodemon --exec \"babel-node server/app.js\"",
+    "set-demo-users": "babel-node server/utils/set-demo-users.js",
+    "get-weather": "babel-node server/utils/get-weather.js",
+    "test": "mocha --compilers js:babel-register"
   },
   "repository": {
     "type": "git",
@@ -34,6 +35,9 @@
     "winston": "^2.3.1"
   },
   "devDependencies": {
+    "babel-register": "^6.24.1",
+    "chai": "^4.1.0",
+    "mocha": "^3.4.2",
     "nodemon": "^1.11.0"
   }
 }
