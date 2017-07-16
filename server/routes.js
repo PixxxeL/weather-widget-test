@@ -5,13 +5,14 @@ import Redis from 'ioredis';
 import { app, passport, errStr } from  './init';
 import { Widget, CITY_MAPPING, DAYS_CHOISES } from './models/Widget';
 import config from '../config.json';
+import log from './utils/log';
 
 
 app.get('/', (req, res) => {
     if (req.user) {
         return res.redirect('/widgets');
     }
-    console.log('Request home page...');
+    log.info('Request home page...');
     let error = req.flash('error');
     res.render('index', {
         user : req.user,
@@ -26,7 +27,7 @@ app.post('/login', passport.authenticate('local', {
 }));
 
 app.get('/logout', (req, res) => {
-    console.log('Request logout page...');
+    log.info('Request logout page...');
     req.logout();
     res.redirect('/');
 });
@@ -35,7 +36,7 @@ app.get('/widgets', (req, res) => {
     if (!req.user) {
         return res.redirect('/');
     }
-    console.log('Request widgets page...');
+    log.info('Request widgets page...');
     Widget.find({user:req.user}, (err, widgets) => {
         res.render('widgets/list.pug', {
             user : req.user,
@@ -58,7 +59,7 @@ app.get('/widgets/add', (req, res) => {
     if (!req.user) {
         return res.redirect('/');
     }
-    console.log('Request widget add form page...');
+    log.info('Request widget add form page...');
     res.render('widgets/form.pug', getWidgetFromData(req.user, null, 'Добавить'));
 });
 
@@ -67,7 +68,7 @@ app.post('/widgets/add', (req, res) => {
     if (!req.user) {
         return res.redirect('/');
     }
-    console.log('Request widget add page...');
+    log.info('Request widget add page...');
     let widget = req.body;
     widget.user = req.user;
     Widget.create(widget, function (err, data) {
@@ -84,7 +85,7 @@ app.get('/widgets/:id/edit', (req, res) => {
     if (!req.user) {
         return res.redirect('/');
     }
-    console.log('Request widget edit form page...');
+    log.info('Request widget edit form page...');
     Widget.findById(req.params.id, function (err, data) {
         if (!err) {
             res.render('widgets/form.pug', getWidgetFromData(req.user, data, 'Редактировать'));
@@ -99,7 +100,7 @@ app.post('/widgets/:id/edit', (req, res) => {
     if (!req.user) {
         return res.redirect('/');
     }
-    console.log('Request widget edit page...');
+    log.info('Request widget edit page...');
     Widget.update({ _id : req.params.id }, { $set : req.body }, function (err, data) {
         if (!err) {
             return res.redirect(`/widgets`);
@@ -114,7 +115,7 @@ app.get('/widgets/:id/del', (req, res) => {
     if (!req.user) {
         return res.redirect('/');
     }
-    console.log('Request widget del page...');
+    log.info('Request widget del page...');
     Widget.findById(req.params.id).remove((err, data) => {
         // chech error and flash.set need here
         res.redirect('/widgets');
