@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 const CITY_MAPPING = {
-    'Москва' : 'Moskow',
+    'Москва' : 'Moscow',
     'Санкт-Петербург' : 'Saint Petersburg',
     'Нижний Новгород' : 'Nizhniy Novgorod'
 };
