@@ -8,5 +8,5 @@
     },
     "secret": "put chars here",
     "openWeatherId": "",
-    "getWeatherTimeout": 10000
+    "getWeatherTimeout": 10000 // unused
 }
